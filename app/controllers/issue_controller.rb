@@ -5,5 +5,8 @@ class IssueController < ApplicationController
     render :json => { list: list }
   end
 
-
+  def events
+    list = Issue.where(issue_id: params[:id]).pluck(:payload)
+    render :json => { issue_id: params[:id], events: list }
+  end
 end

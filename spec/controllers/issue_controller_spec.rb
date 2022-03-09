@@ -18,7 +18,15 @@ RSpec.describe IssueController, type: :controller do
     end
   end
 
-  describe "GET By Issue ID" do
-    
+  describe "GET Events by Issue ID" do
+    it "returns a success reponse" do
+      issue = FactoryBot.create(:issue)
+      get :events, params: { id: issue.issue_id }
+      expect(response).to be_successful
+      parsed_body = JSON.parse(response.body)
+      expect(parsed_body['events']).to be_kind_of(Array)
+      expect(parsed_body['events'].count).to eq(1)
+
+    end
   end
 end
