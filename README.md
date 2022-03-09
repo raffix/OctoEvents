@@ -1,24 +1,42 @@
-# README
+### OctoEvents
+Webhook to log all events on a specif project on github.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requirements
 
-Things you may want to cover:
+* Rails 2.7
+* Postgresql
+* Postman (Local test API)
+* Ngrok (Local test)
 
-* Ruby version
+Just configure the enviroment (It's necessary configure some env vars), and run 'rails s' to up the server.
 
-* System dependencies
+To run local follow the ngrok documentation, and create a webhook on repository at github, adding the ngrok external url.
 
-* Configuration
+At the project you'l find a postman json file with the urls examples to be easier test.
 
-* Database creation
 
-* Database initialization
+##Endpoints
+It's necessary use JWT token when communicate with API. The token will received on header after succeeded login.
 
-* How to run the test suite
+* Register
+```
+POST /signup 
+   {"user": {"email": "your.email@here.com, "password": "your_secure_password"}}
+``` 
+* Login
+```
+POST /signin
+  {"user": {"email": "your.email@here.com, "password": "your_secure_password"}}
+``` 
 
-* Services (job queues, cache servers, search engines, etc.)
+* List all issues ids
+```
+GET / 
+```
 
-* Deployment instructions
+* List all events in a issue
+```
+GET /issue/:id/events
+```
 
-* ...
+When application received a POST on /, a event will be saved on database. The application doesn't have a filter or validation on received data, if is a trusted source.
