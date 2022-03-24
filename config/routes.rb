@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   root                       to: 'issue#index'
   get  '/issues',            to: 'issue#index'
   get  '/issue/:id/events',  to: 'issue#events'
-  post '/',                  to: 'event#create'
+  post '/',                  to: 'events#create'
 end

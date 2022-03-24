@@ -1,4 +1,4 @@
-class EventController < ActionController::API
+class EventsController < ActionController::API
   def create
     puts params.keys
     if params[:event][:issue].present?
